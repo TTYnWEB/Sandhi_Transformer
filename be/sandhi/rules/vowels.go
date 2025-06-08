@@ -49,19 +49,21 @@ func (t VowelTransformer) TransformToChunks(input string) []core.Chunk {
 	return core.ApplySandhiRules(input, vowelRules)
 }
 
-  // {
-  //   Pattern:     regexp.MustCompile(`([aāēō])\s+(i|ī)`),
-  //   Explanation: "(yaṇ)",
-  // // ReplaceFunc: func(sub []string) string { return sub[1] + "y" + sub[2] },
-  //   // ReplaceFunc: func(sub []string) string { return "[au]" },
-  // },
-  // {
-  //   Pattern:     regexp.MustCompile(`([aāēō])\s+(u|ū)`),
-  //   Explanation: "(yaṇ)",
-  // // ReplaceFunc: func(sub []string) string { return sub[1] + "v" + sub[2] },
-  // },
-  // {
-  //   Pattern:     regexp.MustCompile(`([aāēō])\s+ṛ`),
-  //   Explanation: "(yaṇ)",
-  // // ReplaceFunc: func(sub []string) string { return sub[1] + "r" + sub[2] },
-  // },
+/*
+{
+  Pattern:     regexp.MustCompile(`([aāēō])\s+(i|ī)`),
+  Explanation: "(yaṇ)",
+  // ReplaceFunc: func(sub []string) string { return sub[1] + "y" + sub[2] },
+  // ReplaceFunc: func(sub []string) string { return "[au]" },
+},
+{
+  Pattern:     regexp.MustCompile(`([aāēō])\s+(u|ū)`),
+  Explanation: "(yaṇ)",
+  // ReplaceFunc: func(sub []string) string { return sub[1] + "v" + sub[2] },
+},
+{
+  Pattern:     regexp.MustCompile(`([aāēō])\s+ṛ`),
+  Explanation: "(yaṇ)",
+  // ReplaceFunc: func(sub []string) string { return sub[1] + "r" + sub[2] },
+},
+*/
