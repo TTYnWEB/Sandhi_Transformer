@@ -27,9 +27,9 @@ var visargaRules = []core.SandhiRule{
     ReplaceFunc: func(sub []string) string { return "[] " + sub[1] },
   },
   {
-    Pattern:     regexp.MustCompile(`([aāiīuūṛṝḷḹeoēō])ḥ[^\w\n\r]*`),
+    Pattern:     regexp.MustCompile(`([aāiīuūṛṝḷḹeoēō])ḥ([^\w\n\r]*)`),
     Explanation: "Word-final visarga is retained with marker [ḥV] to indicate echoing the vowel.",
-    ReplaceFunc: func(sub []string) string { return sub[1] + "ḥ[" + sub[1] + "]" },
+    ReplaceFunc: func(sub []string) string { return sub[1] + "ḥ[" + sub[1] + "]" + sub[2] },
   },
 }
 
