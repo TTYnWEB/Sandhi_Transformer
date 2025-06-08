@@ -9,10 +9,10 @@ type SandhiRule struct {
 }
 
 type Chunk struct {
-	Text    string `json:"text"`
-	Tooltip string `json:"tooltip,omitempty"`
+  Text    string `json:"text"`
+  Tooltip string `json:"tooltip,omitempty"`
 }
 
 type ChunkingTransformer interface {
-	TransformToChunks(input string) []Chunk
+  TransformToChunks(input string) []Chunk
 }

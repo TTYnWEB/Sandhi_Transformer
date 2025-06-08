@@ -1,7 +1,7 @@
 package rules
 
 import (
-	"regexp"
+  "regexp"
   "sandhi_transformer/sandhi/core"
 )
 
@@ -21,7 +21,7 @@ var vowelRules = []core.SandhiRule{
     Explanation: "u + u → ū (savarna dīrga)",
     ReplaceFunc: func(_, g1, g2 string) string { return core.JoinSandhi(g1, g2, "[ū]", 1, 1) },
   },
-	{
+  {
     Pattern:     regexp.MustCompile(`([aā]) ([iī])`),
     Explanation: "a/ā + i/ī → ē (guṇa)",
     ReplaceFunc: func(_, g1, g2 string) string { return core.JoinSandhi(g1, g2, "[ē]", 1, 1) },
@@ -46,7 +46,7 @@ var vowelRules = []core.SandhiRule{
 type VowelTransformer struct{}
 
 func (t VowelTransformer) TransformToChunks(input string) []core.Chunk {
-	return core.ApplySandhiRules(input, vowelRules)
+  return core.ApplySandhiRules(input, vowelRules)
 }
 
 /*

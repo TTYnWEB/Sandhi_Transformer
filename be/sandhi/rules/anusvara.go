@@ -1,7 +1,7 @@
 package rules
 
 import (
-	"regexp"
+  "regexp"
   "sandhi_transformer/sandhi/core"
 )
 // nasalMap maps consonants to their corresponding nasal.
@@ -36,23 +36,23 @@ var nasalMap = map[string]string{
 func replaceFunc(_, g1, g2 string) string {
   first := ""
 
-	if len(g2) >= 2 {
-		if _, ok := nasalMap[g2[:2]]; ok {
-			first = g2[:2]
-		} else {
-			first = string([]rune(g2)[0])
-		}
-	} else if len(g2) == 1 {
-		first = g2
-	}
+  if len(g2) >= 2 {
+    if _, ok := nasalMap[g2[:2]]; ok {
+      first = g2[:2]
+    } else {
+      first = string([]rune(g2)[0])
+    }
+  } else if len(g2) == 1 {
+    first = g2
+  }
 
-	nasal, ok := nasalMap[first]
-	if !ok {
-		nasal = "ṁ" // fallback
-	}
+  nasal, ok := nasalMap[first]
+  if !ok {
+    nasal = "ṁ" // fallback
+  }
 
-	sub := "[" + nasal + "] "
-	return core.JoinSandhi(g1, g2, sub, 1, 0)
+  sub := "[" + nasal + "] "
+  return core.JoinSandhi(g1, g2, sub, 1, 0)
 }
 
 var anusvaraRules = []core.SandhiRule{
@@ -66,5 +66,5 @@ var anusvaraRules = []core.SandhiRule{
 type AnusvaraTransformer struct{}
 
 func (t AnusvaraTransformer) TransformToChunks(input string) []core.Chunk {
-	return core.ApplySandhiRules(input, anusvaraRules)
+  return core.ApplySandhiRules(input, anusvaraRules)
 }

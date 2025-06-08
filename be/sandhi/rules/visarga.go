@@ -1,7 +1,7 @@
 package rules
 
 import (
-	"regexp"
+  "regexp"
   "sandhi_transformer/sandhi/core"
 )
 
@@ -30,12 +30,12 @@ var visargaRules = []core.SandhiRule{
   //   Pattern:     regexp.MustCompile(`([aāiīuūṛṝḷḹeoēō])ḥ([^\w\n\r]*)`),
   //   Explanation: "Word-final visarga is retained with marker [ḥV] to indicate echoing the vowel.",
   //   ReplaceFunc: func(_, g1, g2 string) string {
-  // 	if len(g1) < 2 {
-  // 		return g1 + g2
-  // 	}
-  // 	runes := []rune(g1)
-  // 	vowel := string(runes[len(runes)-2])
-  // 	return g1[:len(g1)-1] + "[ḥ" + vowel + "]" + g2
+  //   if len(g1) < 2 {
+  //     return g1 + g2
+  //   }
+  //   runes := []rune(g1)
+  //   vowel := string(runes[len(runes)-2])
+  //   return g1[:len(g1)-1] + "[ḥ" + vowel + "]" + g2
   // },
   // },
 }

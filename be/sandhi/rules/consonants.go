@@ -1,7 +1,7 @@
 package rules
 
 import (
-	"regexp"
+  "regexp"
   "sandhi_transformer/sandhi/core"
 )
 
@@ -61,11 +61,11 @@ var consonantRules = []core.SandhiRule{
     Explanation: "t + s → s (tat + satyam → tas satyam)",
     ReplaceFunc: func(_, g1, g2 string) string { return core.JoinSandhi(g1, g2, "[s] s", 1, 1) },
   },
-	{
+  {
     Pattern:     regexp.MustCompile(`(s) (k)`),
     Explanation: "s + k → sk",
     ReplaceFunc: func(_, g1, g2 string) string { return core.JoinSandhi(g1, g2, "[sk]", 1, 1) },
-	},
+  },
   {
     Pattern:     regexp.MustCompile(`(s) ([aāiīuūṛṝḷḹeoēōghjbdgz])`),
     Explanation: "s → r before voiced letters (manas + indra → manarindraḥ)",
@@ -76,5 +76,5 @@ var consonantRules = []core.SandhiRule{
 type ConsonantTransformer struct{}
 
 func (t ConsonantTransformer) TransformToChunks(input string) []core.Chunk {
-	return core.ApplySandhiRules(input, consonantRules)
+  return core.ApplySandhiRules(input, consonantRules)
 }
