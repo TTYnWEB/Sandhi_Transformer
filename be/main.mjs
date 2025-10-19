@@ -24,86 +24,52 @@ const applySandhi = input => {
   const words = normalized.trim().split(' ').map(word => applyIntraWordAnusvara(word));
   const result = [];
 
-  for (let i = 0; (i < words.length); i++) {
+  for (let i = 0; i < words.length; i++) {
     const j = (i + 1);
     const word1 = words[i];
     const word2 = words[j];
 
     if (!word2) {
-      result.push(word1); // NOTE: check for final visarga?
+      result.push(word1);
       break;
     }
 
-    /////////////////////////////////////////////
-
-    // const processAttempt = (ruleFunc, current = { word1 }, word2) => {
     const processAttempt = (rulesArr, word1, word2) => {
+      const advance = 1; // NOTE: default increment (by 1)
+      const combined = false;
+      let currWord = word1;
+
       for (const ruleFunc of rulesArr) {
-        const attempt = ruleFunc(word1, word2);
-        if (!attempt?.result)
+        const attempt = ruleFunc(currWord, word2);
+        if (attempt === null) // NOTE: no match, continue to next rule
           continue;
+
         const { result, combined } = attempt;
-        if (result) {
-          if (combined)
-            return { finalResult: result, toPush: true };
-          else 
-            word1 = result;
-        }
+
+        if (combined)
+          return { finalResult: result, combined  }; // NOTE: if combined, need to return immediately, no other rules can match...
+        else
+          currWord = result;
       }
-      return { finalResult: word1, toPush: false };
+      return { finalResult: currWord,  combined };
     };
 
     const rulesArr = [tryAnusvaraRules, tryVisargaRules, tryVowelRules, tryConsonantRules];
+    const { finalResult, combined } = processAttempt(rulesArr, word1, word2);
 
-    let { finalResult, toPush } = processAttempt(rulesArr, word1, word2);
-
-    if (toPush)
-        result.push(finalResult);
-    else
+    if (combined)
       words[j] = finalResult;
-      // continue;
-
-    // if (!attempt)
-    //   return word1;
-
-////////////////////////////////////////////////////////////////
-
-
-    // let current = { word1 };
-    //
-    // let attempt = tryAnusvaraRules(current.word1, word2);
-    // //
-    // if (attempt?.result)
-    //   current = { word1: attempt.result };
-    //
-    // attempt = tryVisargaRules(current.word1, word2);
-    //
-    // if (attempt?.result)
-    //   current = { word1: attempt.result };
-    //
-    //  attempt = tryVowelRules(current.word1, word2);
-    //
-    //  if (attempt?.result)
-    //    current = { word1: attempt.result, word2 };
-    //  else 
-    //    attempt = tryConsonantRules(current.word1, word2);
-    //
-    // if (!attempt)
-    //   result.push(word1);
-    // else {
-    //   if (attempt.combined)
-    //     words[j] = attempt.result; // Words were combined - update words array for next iteration
-    //   else
-    //     result.push(attempt.result); // i++;
-    // }
-  };
+    else
+      result.push(finalResult);
+   }
 
   return result.join(' ');
 };
 
 // MAIN
 const output = applySandhi(input);
-console.log(output);
+if (output)
+  console.log(output);
 // console.log(JSON.stringify({ input, outpt }, null, 2));
 
 // EXPs

@@ -1,12 +1,24 @@
 {
+  "type": "module",
   "dependencies": {
+    "cross-env": "^10.1.0",
     "jest": "^29.7.0"
   },
   "jest": {
-    "globals": { "__TRANSFORM_PROVIDER": "typescript" },
+    "globals": {
+      "__TRANSFORM_PROVIDER": "typescript"
+    },
     "transform": {},
     "testEnvironment": "node",
-    "moduleFileExtensions": ["js", "mjs"],
-    "testMatch": ["**/tests/*.test.mjs"]
+    "moduleFileExtensions": [
+      "js",
+      "mjs"
+    ],
+    "testMatch": [
+      "**/tests/*.test.mjs"
+    ]
+  },
+  "scripts": {
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"
   }
 }

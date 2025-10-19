@@ -3,7 +3,7 @@
 // since there they are *similar*
 const isVowel = c => 'aāiīuūṛṝḷḹēō'.includes(c);
 
-const sandhiResult = (result, combined = false) => ({
+const sandhiResult = (result, combined = true) => ({ // NOTE: combined = true because all vowel rules combine
   result,
   combined,
 });
@@ -107,40 +107,40 @@ function tryVowelRules(word1, word2) {
   // Check savarna dirga first
   if (savarnaDirga[key]) {
     const replacement = savarnaDirga[key];
-    return sandhiResult((baseW1 + replacement + restW2), true);
+    return sandhiResult(baseW1 + replacement + restW2);
   }
 
   // Check guna
   if (guna[key]) {
     const replacement = guna[key];
-    return sandhiResult((baseW1 + replacement + restW2), true);
+    return sandhiResult(baseW1 + replacement + restW2);
   }
 
   // Check vriddhi
   if (vriddhi[key]) {
     const replacement = vriddhi[key];
-    return sandhiResult((baseW1 + replacement + restW2), true);
+    return sandhiResult(baseW1 + replacement + restW2);
   }
 
   // purvarupa 
   if (purvaRupa[key])
-    return sandhiResult(`${word1}'${restW2}`, true);
+    return sandhiResult(`${word1}'${restW2}`);
 
   // Check yan
   if (yan[tailW1] && isVowel(headW2)) {
     const replacement = (yan[tailW1] + headW2);
-    return sandhiResult((baseW1 + replacement + restW2), true);
+    return sandhiResult(baseW1 + replacement + restW2);
   }
 
   // Check ayava
   if (ayava[tailW1] && isVowel(headW2)) {
     const replacement = (ayava[tailW1] + headW2);
-    return sandhiResult((baseW1 + replacement + restW2), true);
+    return sandhiResult(baseW1 + replacement + restW2);
   }
 
   if (ayava2[tail2W1] && isVowel(headW2)) {
-    const replacement = (ayava[tail2W1] + headW2);
-    return sandhiResult((base2W1 + replacement + restW2), true);
+    const replacement = (ayava2[tail2W1] + headW2);
+    return sandhiResult(base2W1 + replacement + restW2);
   }
 
   // NOTE: "śivaḥ te ēva" → "śiva tyaiva" (ḥ drops, ē+a→ya, a+ē→ai)

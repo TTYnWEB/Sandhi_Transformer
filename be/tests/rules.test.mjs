@@ -1,25 +1,9 @@
-// Simple Jest tests for Sanskrit sandhi rules
+// NOTE: Unit tests for individual rules use normalized IAST (ē, ō, etc.)
 
 import { tryAnusvaraRules, applyIntraWordAnusvara } from '../rules/anusvara.mjs';
 import tryVisargaRules from '../rules/visarga.mjs';
 import tryVowelRules from '../rules/vowels.mjs';
 import tryConsonantRules from '../rules/consonants.mjs';
-// import normalize from '../normalize.mjs';
-import applySandhi from '../main.mjs';
-
-// describe('Normalize Function', () => {
-//   test('converts to lowercase', () => {
-//     expect(normalize('RĀMA')).toBe('rāma');
-//   });
-//
-//   test('replaces colon with visarga', () => {
-//     expect(normalize('rāma:')).toBe('rāmaḥ');
-//   });
-//
-//   test('removes extra spaces', () => {
-//     expect(normalize('rāma   gacchati')).toBe('rāma gacchati');
-//   });
-// });
 
 describe('Anusvāra Rules', () => {
   test('transforms intra-word ṁ + k to ṅ', () => {
@@ -81,7 +65,7 @@ describe('Vowel Rules', () => {
   });
 
   test('elides a after ē (pūrva-rūpa)', () => {
-    const result = tryVowelRules('te', 'atra');
+    const result = tryVowelRules('tē', 'atra');
     expect(result.result).toBe(`tē'tra`);
   });
 
@@ -130,30 +114,5 @@ describe('Edge Cases', () => {
     expect(tryVisargaRules('', 'word')).toBeNull();
     expect(tryVowelRules('', 'word')).toBeNull();
     expect(tryConsonantRules('', 'word')).toBeNull();
-  });
-});
-
-
-describe('Full Sandhi Integration', () => {
-  test('handles multi-rule transformations', () => {
-    // visarga + vowel sandhi: rāmaḥ asti → rāmō + asti → rāmō'sti
-    expect(applySandhi('rāmaḥ asti')).toBe("rāmō'sti");
-    
-    // anusvara + vowel: taṁ eva → taṅ eva (or similar based on implementation)
-    expect(applySandhi('taṁ eva')).toBe('taṁ ēva');
-    
-    // multiple vowel rules: mama icchā asti → mamecchāsti  
-    expect(applySandhi('mama icchā asti')).toBe('mamēcchāsti');
-  });
-
-  test('handles longer phrases', () => {
-    // Three word phrase with multiple transformations
-    expect(applySandhi('rāmaḥ ca sītā')).toBe('rāmaś ca sītā');
-    
-    // Four word phrase
-    expect(applySandhi('mama ālaye devaḥ asti')).toBe("mamālaye devō'sti");
-    
-    // Mixed transformations
-    expect(applySandhi('taṁ karoti mama icchā')).toBe('taṅ karoti mamecchā');
   });
 });

@@ -1,4 +1,4 @@
-// [DATA]
+// [DATA] //////////////////////////////////////////////////////////////////////
 const nasalMap = {
   'k': 'ṅ',
   'g': 'ṅ',
@@ -21,7 +21,8 @@ const nasalMap = {
   'v': 'm',
 };
 
-// [FUNC]
+
+// [FUNC] //////////////////////////////////////////////////////////////////////
 /**
  * Creates a standardized result object for sandhi transformations
  * 
@@ -76,12 +77,14 @@ function tryAnusvaraRules(word1, word2) {
     return null;
   const headCharWord2 = word2[0];
   const replacementChar = nasalMap[headCharWord2];
+  if (!replacementChar)
+    return null;
   const transformed = (word1.slice(0, i) + replacementChar);
   // console.log({ headCharWord2, replacementChar, transformed });
   return sandhiResult(transformed);
 }
 
-// [EXPs]
+// [EXPs] //////////////////////////////////////////////////////////////////////
 export {
   applyIntraWordAnusvara,
   tryAnusvaraRules,
