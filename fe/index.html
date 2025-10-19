@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="sandhi transformer">
+    <title>Sandhi Transformer</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.pumpkin.min.css"
+    >
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png">
+    <style>
+      textarea { height: 10em; resize: none; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <hgroup>
+        <h1>Sandhi Transformer</h1>
+        <!-- <p>minimalist transformer</p> -->
+      </hgroup>
+    </header>
+    <main class="container">
+      <form>
+        <fieldset>
+          <label for="input">Input</label>
+          <textarea id="input" placeholder="input IAST text to transform" maxlength="300" autofocus></textarea>
+          <input id="trans-btn" type="button" value="transform">
+        </fieldset>
+      </form>
+      <label id="output-label" for="output" hidden>Output</label>
+      <textarea id="output" required readonly hidden></textarea>
+    </main>
+    <footer>
+    </footer>
+    <script src="js/script.js"></script>
+  </body>
+</html>

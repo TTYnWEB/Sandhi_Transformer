@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "globals": { "__TRANSFORM_PROVIDER": "typescript" },
+    "transform": {},
+    "testEnvironment": "node",
+    "moduleFileExtensions": ["js", "mjs"],
+    "testMatch": ["**/tests/*.test.mjs"]
+  }
+}
