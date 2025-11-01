@@ -82,7 +82,6 @@ function tryAnusvaraRules(word1, word2) {
   if (!replacementChar)
     return null;
   const transformed = (word1.slice(0, i) + replacementChar);
-  // console.log({ headCharWord2, replacementChar, transformed });
   return sandhiResult(transformed);
 }
 

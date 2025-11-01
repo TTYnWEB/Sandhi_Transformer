@@ -38,12 +38,7 @@ const errHandler = err => {
 };
 
 fastify.post('/api/transform', async (req, res) => {
-  console.log('1. Full request.body:', req.body)
-  console.log('2. Type of body:', typeof req.body)
-
   const { inputTxt } = req.body;
-  console.log('3. Extracted inputTxt:', inputTxt)
-  console.log('4. Type of inputTxt:', typeof inputTxt)
 
   if (!inputTxt)
     return res.code(400).send({ error: 'inputTxt is required' });

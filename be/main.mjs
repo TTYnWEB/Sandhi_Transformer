@@ -69,12 +69,3 @@ const applySandhi = (inputTxt) => {
   console.log('applySandhi: ', { output });
   return output;
 };
-
-// MAIN
-//const outputTxt = applySandhi(input);
-//if (outputTxt)
-//  console.log(output);
-// console.log(JSON.stringify({ input, outpt }, null, 2));
-
-// EXPs
-export default applySandhi;
