@@ -3,7 +3,7 @@
 
 // https://lrc.la.utexas.edu/eieol/vedol/110
 
-// IMPs
+//[ IMPs ]////////////////////////////////////////////////////////////////////
 import normalize from './normalize.mjs';
 import tryConsonantRules from './rules/consonants.mjs';
 import tryVowelRules from './rules/vowels.mjs';
@@ -13,10 +13,10 @@ import {
   tryAnusvaraRules,
 } from './rules/anusvara.mjs';
 
-// ARGs
+//[ ARGs ]////////////////////////////////////////////////////////////////////
 const input = process.argv[2];
 
-// FUNC
+//[ FUNC ]////////////////////////////////////////////////////////////////////
 const applySandhi = (inputTxt) => {
   console.log('applySandhi: ', { inputTxt });
   if (!inputTxt)
@@ -69,3 +69,8 @@ const applySandhi = (inputTxt) => {
   console.log('applySandhi: ', { output });
   return output;
 };
+
+
+//[ EXPs ]////////////////////////////////////////////////////////////////////
+export default applySandhi;
+
