@@ -1,3 +1,4 @@
+// [ FUNC ] ////////////////////////////////////////////////////////////////////
 const isVoiced = char => 'gjḍdbṅñṇnmyrlvh'.includes(char);
 const isVowel = char => 'aāiīuūṛṝḷḹēō'.includes(char);
 const sandhiResult = (result, combined = false) => ({
@@ -5,6 +6,8 @@ const sandhiResult = (result, combined = false) => ({
   combined,
 });
 
+
+// [ MAIN ] ////////////////////////////////////////////////////////////////////
 const tryConsonantRules = (word1, word2) => {
   if (!word1 || !word2)
     return null;
@@ -72,4 +75,6 @@ const tryConsonantRules = (word1, word2) => {
   return null;
 };
 
+
+// [ EXPs ] ////////////////////////////////////////////////////////////////////
 export default tryConsonantRules;

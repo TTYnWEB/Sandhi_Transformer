@@ -1,14 +1,4 @@
-// NOTE: must be *dissimilar* vowel?
-// this might be covered by savarna already...
-// since there they are *similar*
-const isVowel = c => 'aāiīuūṛṝḷḹēō'.includes(c);
-
-const sandhiResult = (result, combined = true) => ({ // NOTE: combined = true because all vowel rules combine
-  result,
-  combined,
-});
-
-// Helper maps for vowels and their sandhi results
+// [ DATA ] ////////////////////////////////////////////////////////////////////
 const savarnaDirga = {
   'a+a': 'ā',
   'a+ā': 'ā',
@@ -89,6 +79,20 @@ const ayava2 = {
   'au': 'āv',
 };
 
+
+// [ FUNC ] ////////////////////////////////////////////////////////////////////
+// NOTE: must be *dissimilar* vowel?
+// this might be covered by savarna already...
+// since there they are *similar*
+const isVowel = c => 'aāiīuūṛṝḷḹēō'.includes(c);
+
+const sandhiResult = (result, combined = true) => ({ // NOTE: combined = true because all vowel rules combine
+  result,
+  combined,
+});
+
+
+// [ MAIN ] ////////////////////////////////////////////////////////////////////
 function tryVowelRules(word1, word2) {
   if (!word1 || !word2)
     return null;
@@ -148,4 +152,5 @@ function tryVowelRules(word1, word2) {
   return null;
 }
 
+// [ EXPs ] ////////////////////////////////////////////////////////////////////
 export default tryVowelRules;

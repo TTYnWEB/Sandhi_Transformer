@@ -17,11 +17,10 @@ import {
 const input = process.argv[2];
 
 // FUNC
-const applySandhi = (inputTxt) => {
-  console.log('applySandhi: ', { inputTxt });
-  if (!inputTxt)
+const applySandhi = input => {
+  if (!input)
     return null;
-  const normalized = normalize(inputTxt);
+  const normalized = normalize(input);
   const words = normalized.trim().split(' ').map(word => applyIntraWordAnusvara(word));
   const result = [];
 
@@ -64,16 +63,13 @@ const applySandhi = (inputTxt) => {
       result.push(finalResult);
    }
 
-  const resultStr = result.join(' ');
-  const output = { outputTxt: resultStr };
-  console.log('applySandhi: ', { output });
-  return output;
+  return result.join(' ');
 };
 
 // MAIN
-//const outputTxt = applySandhi(input);
-//if (outputTxt)
-//  console.log(output);
+const output = applySandhi(input);
+if (output)
+  console.log(output);
 // console.log(JSON.stringify({ input, outpt }, null, 2));
 
 // EXPs

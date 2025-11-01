@@ -1,9 +1,9 @@
 //[ ELEM ]/////////////////////////////////////////////////////////////////////
-const html         = document.documentElement;
-const input        = document.getElementById('input');
-const transformBtn = document.getElementById('transform-btn');
-const output       = document.getElementById('output');
-const outputLabel  = document.getElementById('output-label');
+const html        = document.documentElement;
+const input       = document.getElementById('input');
+const transBtn    = document.getElementById('trans-btn');
+const output      = document.getElementById('output');
+const outputLabel = document.getElementById('output-label');
 
 //[ DATA ]/////////////////////////////////////////////////////////////////////
 let prevVal = input.value;
@@ -29,49 +29,32 @@ const setInitialTheme = () => {
   }
 };
 
-const transformBtnClk = async () => {
-  const inputTxt = input.value;  
-
-  const payload = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ inputTxt }),
-  };
-
-  const res = await fetch('/api/transform', payload)
-    .then(res => res.json())
-    .then(({ outputTxt }) => output.value = outputTxt)
-    .catch(err => {
-      console.error({ err });	
-      // invalidHelp.removeAttribute('hidden');
-      // submitButton.disabled = true;
-      // urlInput.setAttribute('aria-invalid', true);
-    });
-
-  transformBtn.setAttribute('hidden', true);
+const transBtnClk = () => {
+  const content = input.value;  
+  transBtn.setAttribute('hidden', true);
   output.removeAttribute('hidden');
   outputLabel.removeAttribute('hidden');
-  // output.value = content;
+  output.value = content;
   output.select();
 };
 
 const unHide = () => {
   output.removeAttribute('hidden');
-  transformBtn.setAttribute('hidden', true);
+  transBtn.setAttribute('hidden', true);
 };
 
 const inputChange = (event) => {
   const currVal = event?.target?.value;
   if (currVal !== prevVal) {
-    transformBtn.removeAttribute('hidden');
+    transBtn.removeAttribute('hidden');
     output.setAttribute('hidden', true);
     outputLabel.setAttribute('hidden', true);
   }
 };
 
 //[ EventListeners ]////////////////////////////////////////////////////////////
-transformBtn.addEventListener('click', transformBtnClk);
-transformBtn.addEventListener('touchstart', transformBtnClk);
+transBtn.addEventListener('click', transBtnClk);
+transBtn.addEventListener('touchstart', transBtnClk);
 input.addEventListener('input', inputChange);
 output.addEventListener('click', selectText);
 output.addEventListener('touchstart', selectText);

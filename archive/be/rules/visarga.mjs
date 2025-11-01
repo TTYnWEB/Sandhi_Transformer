@@ -1,3 +1,4 @@
+// [ FUNC ] ////////////////////////////////////////////////////////////////////
 const isVowel = c => 'aāiīuūṛṝḷḹēō'.includes(c);
 const isSonant = c => 'gjdbnmyvrh'.includes(c) // voiced consonants + nasals/liquids
 
@@ -6,6 +7,8 @@ const sandhiResult = (result, combined = false) => ({
   combined,
 });
 
+
+// [ MAIN ] ////////////////////////////////////////////////////////////////////
 /**
  * Applies visarga sandhi rules between two words
  * 
@@ -13,7 +16,7 @@ const sandhiResult = (result, combined = false) => ({
  * @param {string} word2 - Second word  
  * @returns {Object|null} Sandhi result object or null if no rule applies
  */
-function tryVisargaRules(word1, word2) {
+const tryVisargaRules = (word1, word2) => {
   if (!word1 || !word2)
     return null;
 
@@ -86,6 +89,8 @@ function tryVisargaRules(word1, word2) {
     return sandhiResult(baseW1 + 'r')
 
   return null;
-}
+};
 
+
+// [ EXPs ] ////////////////////////////////////////////////////////////////////
 export default tryVisargaRules;

@@ -35,6 +35,8 @@ const sandhiResult = (result, combined = false) => ({
   combined,
 });
 
+
+// [MAIN] //////////////////////////////////////////////////////////////////////
 /**
  * Replaces the intra-word anusvāra (ṁ) in a given word with the appropriate (homorganic)
  * nasal consonant based on the character that follows it, using a predefined nasal mapping.
@@ -83,6 +85,7 @@ function tryAnusvaraRules(word1, word2) {
   // console.log({ headCharWord2, replacementChar, transformed });
   return sandhiResult(transformed);
 }
+
 
 // [EXPs] //////////////////////////////////////////////////////////////////////
 export {
